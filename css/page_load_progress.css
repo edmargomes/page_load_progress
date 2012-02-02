@@ -1,25 +1,25 @@
 .page-load-progress-lock-screen {
-  width:100%;
-  height:100%;
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:9998;
-  background-color:#fff;
-  background-color:rgba(245,245,245,0.95); 
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  background-color: #fff;
+  background-color: rgba(245,245,245,0.95); 
 }
 
 .page-load-progress-lock-screen.hidden {
-  display:none;
+  display: none;
 }
 
 .page-load-progress-spinner {
-  background-image:url('../images/loader.gif');
-  background-repeat:no-repeat;
-  width:128px;
-  height:128px;
-  position:absolute;
-  top:42%;
-  left:45%;
-  z-index:9999;
+  background-image: url('../images/loader.gif');
+  background-repeat: no-repeat;
+  width: 128px;
+  height: 128px;
+  position: absolute;
+  top: 42%;
+  left: 45%;
+  z-index: 9999;
 }

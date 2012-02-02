@@ -2,18 +2,19 @@
 
 /**
  * Implements hook_menu().
+ * 
  */
 function page_load_progress_menu() {
   $items = array();
 
   $items['admin/config/user-interface/page_load_progress'] = array(
-      'title' => 'Page Load Progress',
-      'description' => 'Manage the behavior of Page Load Progress.',
-      'page callback' => 'drupal_get_form',
-      'page arguments' => array('page_load_progress_settings'),
-      'access arguments' => array('administer Page Load Progress settings'),
-      'file' => 'page_load_progress.admin.inc',
-      'type' => MENU_NORMAL_ITEM,
+    'title' => 'Page Load Progress',
+    'description' => 'Manage the behavior of Page Load Progress.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('page_load_progress_settings'),
+    'access arguments' => array('administer Page Load Progress settings'),
+    'file' => 'page_load_progress.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
   );
 
   return $items;
@@ -21,32 +22,26 @@ function page_load_progress_menu() {
 
 /**
  * Implements hook_permission().
+ * 
  */
 function page_load_progress_permission() {
   return array(
-      'administer Page Load Progress settings' => array(
-          'title' => t('Administer Page Load Progress settings'),
-      ),
+    'administer Page Load Progress settings' => array(
+      'title' => t('Administer Page Load Progress settings'),
+    ),
   );
 }
 
 /**
  * Implements hook_init().
+ * 
  */
 function page_load_progress_init() {
-  
-  $enabled = (bool) variable_get('page_load_progress_enable', 0);
-  // replace this true with a check to the global variable that enables the module
-  if ($enabled) {
-    
-    drupal_add_js(drupal_get_path('module', 'page_load_progress') . '/js/page_load_progress.js');
-    drupal_add_css(drupal_get_path('module', 'page_load_progress') . '/css/page_load_progress.css');
-    
-    $settings = array(
-                  'delay'     => variable_get('page_load_progress_time', 10),
-                  'elements'  => variable_get('page_load_progress_elements', ''),          
-                );
+ 
+  $settings = array(
+                'delay'     => variable_get('page_load_progress_time', 10),
+                'elements'  => variable_get('page_load_progress_elements', ''),          
+              );
 
-    drupal_add_js(array('page_load_progress' => $settings), 'setting');
-  }
+  drupal_add_js(array('page_load_progress' => $settings), 'setting');
 }
