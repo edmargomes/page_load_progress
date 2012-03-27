@@ -6,7 +6,7 @@
   left: 0;
   z-index: 9998;
   background-color: #fff;
-  background-color: rgba(245,245,245,0.95); 
+  background-color: rgba(245,245,245,0.95);
 }
 
 .page-load-progress-lock-screen.hidden {

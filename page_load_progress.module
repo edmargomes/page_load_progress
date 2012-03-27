@@ -1,8 +1,14 @@
 <?php
 
 /**
+ * @file
+ * Page Load Progress allows you to set a screen lock showing a spinner when the
+ * user clicks on an element that triggers a time consuming task.
+ */
+
+/**
  * Implements hook_menu().
- * 
+ *
  */
 function page_load_progress_menu() {
   $items = array();
@@ -22,7 +28,7 @@ function page_load_progress_menu() {
 
 /**
  * Implements hook_permission().
- * 
+ *
  */
 function page_load_progress_permission() {
   return array(
@@ -34,14 +40,14 @@ function page_load_progress_permission() {
 
 /**
  * Implements hook_init().
- * 
+ *
  */
 function page_load_progress_init() {
- 
+
   $settings = array(
-                'delay'     => variable_get('page_load_progress_time', 10),
-                'elements'  => variable_get('page_load_progress_elements', ''),          
-              );
+    'delay'     => variable_get('page_load_progress_time', 10),
+    'elements'  => variable_get('page_load_progress_elements', ''),
+  );
 
   drupal_add_js(array('page_load_progress' => $settings), 'setting');
 }

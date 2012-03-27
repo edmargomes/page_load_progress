@@ -1,5 +1,5 @@
 (function($){
-  
+
   Drupal.behaviors.page_load_progress = {
 
     attach: function(context, settings) {
