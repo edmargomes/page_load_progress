@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Admin settings forms for progressive_registration.
+ * Admin settings forms for Page Load Progress.
  */
 
 /**
@@ -29,9 +29,8 @@ function page_load_progress_settings($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Elements that will trigger the throbber'),
     '#description' => t('Enter the elements that will trigger the effect separated by commas. Classes should have their leading dot and ids their leading hashes.'),
-    '#default_value' => variable_get('page_load_progress_elements', ''),
+    '#default_value' => variable_get('page_load_progress_elements', '.form-submit'),
   );
-
 
   return system_settings_form($form);
 }
