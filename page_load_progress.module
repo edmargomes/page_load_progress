@@ -12,7 +12,7 @@
 function page_load_progress_menu() {
   $items = array();
 
-  $items['admin/config/user-interface/page_load_progress'] = array(
+  $items['admin/config/user-interface/page-load-progress'] = array(
     'title' => 'Page Load Progress',
     'description' => 'Manage the behavior of Page Load Progress.',
     'page callback' => 'drupal_get_form',

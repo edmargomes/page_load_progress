@@ -3,4 +3,4 @@ description = "Locks the screen and adds a progress icon to indicate progress wh
 core = 7.x
 stylesheets[all][] = css/page_load_progress.css
 scripts[] = js/page_load_progress.js
-configure = admin/config/user-interface/page_load_progress
+configure = admin/config/user-interface/page-load-progress

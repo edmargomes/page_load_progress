@@ -1,3 +1,9 @@
+/**
+ * @file
+ * Page Load Progress allows you to set a screen lock showing a spinner when the
+ * user clicks on an element that triggers a time consuming task.
+ */
+
 (function($){
 
   Drupal.behaviors.page_load_progress = {
