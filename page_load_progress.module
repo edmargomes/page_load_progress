@@ -7,25 +7,6 @@
  */
 
 /**
- * Implements hook_menu().
- */
-function page_load_progress_menu() {
-  $items = array();
-
-  $items['admin/config/user-interface/page-load-progress'] = array(
-    'title' => 'Page Load Progress',
-    'description' => 'Manage the behavior of Page Load Progress.',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('page_load_progress_settings'),
-    'access arguments' => array('administer Page Load Progress settings'),
-    'file' => 'page_load_progress.admin.inc',
-    'type' => MENU_NORMAL_ITEM,
-  );
-
-  return $items;
-}
-
-/**
  * Implements hook_permission().
  */
 function page_load_progress_permission() {
@@ -37,14 +18,21 @@ function page_load_progress_permission() {
 }
 
 /**
- * Implements hook_init().
+ * Implements hook_page_build().
  */
-function page_load_progress_init() {
+function page_load_progress_page_build(&$page) {
 
-  $settings = array(
-    'delay'     => variable_get('page_load_progress_time', 10),
-    'elements'  => variable_get('page_load_progress_elements', '.form-submit'),
-  );
+/*  $delay    = \Drupal::config('page_load_progress.settings')->get('page_load_progress_time');
+  $elements = \Drupal::config('page_load_progress.settings')->get('page_load_progress_elements');
 
-  drupal_add_js(array('page_load_progress' => $settings), 'setting');
+  if ($delay && $elements) {
+
+    $path = drupal_get_path('module', 'page_load_progress');
+
+    $page['#attached']['js'][$path . '/js/page_load_progress.js'] = array('every_page' => TRUE);
+    print 'Oh, wow!';
+  }*/
+
+  $path = drupal_get_path('module', 'page_load_progress');
+  $page['#attached']['js'][$path . '/js/page_load_progress.js'] = array('every_page' => TRUE);
 }
