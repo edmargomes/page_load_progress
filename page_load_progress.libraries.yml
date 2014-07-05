@@ -1,4 +1,4 @@
-compact_forms:
+page_load_progress:
   version: VERSION
   js:
     js/page_load_progress.js: {}
