@@ -8,6 +8,7 @@
 namespace Drupal\page_load_progress\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
+use Drupal\Core\Form\FormStateInterface;
 
 class SettingsForm extends ConfigFormBase {
 
@@ -21,7 +22,7 @@ class SettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, array &$form_state) {
+  public function buildForm(array $form, FormStateInterface $form_state) {
     $page_load_progress_config = $this->config('page_load_progress.settings');
 
     $form['page_load_progress_time'] = array(
@@ -50,7 +51,7 @@ class SettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, array &$form_state) {
+  public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config('page_load_progress.settings')
       ->set('page_load_progress_time', $form_state['values']['page_load_progress_time'])
       ->set('page_load_progress_elements', $form_state['values']['page_load_progress_elements'])
@@ -59,3 +60,4 @@ class SettingsForm extends ConfigFormBase {
     parent::submitForm($form, $form_state);
   }
 }
+

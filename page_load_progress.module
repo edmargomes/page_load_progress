@@ -21,18 +21,7 @@ function page_load_progress_permission() {
  * Implements hook_page_build().
  */
 function page_load_progress_page_build(&$page) {
-
-/*  $delay    = \Drupal::config('page_load_progress.settings')->get('page_load_progress_time');
-  $elements = \Drupal::config('page_load_progress.settings')->get('page_load_progress_elements');
-
-  if ($delay && $elements) {
-
-    $path = drupal_get_path('module', 'page_load_progress');
-
-    $page['#attached']['js'][$path . '/js/page_load_progress.js'] = array('every_page' => TRUE);
-    print 'Oh, wow!';
-  }*/
-
   $path = drupal_get_path('module', 'page_load_progress');
   $page['#attached']['js'][$path . '/js/page_load_progress.js'] = array('every_page' => TRUE);
 }
+
