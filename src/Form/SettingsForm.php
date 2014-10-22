@@ -53,8 +53,8 @@ class SettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config('page_load_progress.settings')
-      ->set('page_load_progress_time', $form_state['values']['page_load_progress_time'])
-      ->set('page_load_progress_elements', $form_state['values']['page_load_progress_elements'])
+      ->set('page_load_progress_time', $form_state->getValue('page_load_progress_time'))
+      ->set('page_load_progress_elements', $form_state->getValue('page_load_progress_elements'))
       ->save();
 
     parent::submitForm($form, $form_state);
