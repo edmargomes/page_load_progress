@@ -27,7 +27,7 @@ class PageLoadProgressAdminSettingsFormTest extends WebTestBase {
    *
    * @var array
    */
-  public static $modules = array('page_load_progress');
+  public static $modules = ['page_load_progress'];
 
   /**
    * The installation profile to use with this test.
@@ -40,11 +40,11 @@ class PageLoadProgressAdminSettingsFormTest extends WebTestBase {
    * {@inheritdoc}
    */
   public static function getInfo() {
-    return array(
+    return [
       'name' => 'Page Load Progress settings form',
       'description' => 'Tests the Page Load Progress admin settings form.',
       'group' => 'Page Load Progress',
-    );
+    ];
   }
 
   /**
@@ -53,7 +53,7 @@ class PageLoadProgressAdminSettingsFormTest extends WebTestBase {
   public function setUp() {
     parent::setUp();
     // Privileged user should only have the page_load_progress permissions
-    $this->privilegedUser = $this->drupalCreateUser(array('administer Page Load Progress settings'));
+    $this->privilegedUser = $this->drupalCreateUser(['administer Page Load Progress settings']);
     $this->drupalLogin($this->privilegedUser);
   }
 
@@ -85,10 +85,10 @@ class PageLoadProgressAdminSettingsFormTest extends WebTestBase {
    */
   public function testPageLoadProgressSettingsPost() {
     // Post form with new values.
-    $edit = array(
+    $edit = [
       'page_load_progress_time' => 5000,
       'page_load_progress_elements' => '.sample_submit',
-    );
+    ];
     $this->drupalPostForm('admin/config/user-interface/page-load-progress', $edit, t('Save configuration'));
 
     // Load settings form page and test for new values.

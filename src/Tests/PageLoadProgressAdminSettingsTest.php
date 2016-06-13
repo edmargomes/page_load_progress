@@ -27,7 +27,7 @@ class PageLoadProgressAdminSettingsTest extends WebTestBase {
    *
    * @var array
    */
-  public static $modules = array('page_load_progress');
+  public static $modules = ['page_load_progress'];
 
   /**
    * The installation profile to use with this test.
@@ -40,11 +40,11 @@ class PageLoadProgressAdminSettingsTest extends WebTestBase {
    * {@inheritdoc}
    */
   public static function getInfo() {
-    return array(
+    return [
       'name' => 'Page Load Progress admin settings',
       'description' => 'Tests the Page Load Progress admin settings.',
       'group' => 'Page Load Progress',
-    );
+    ];
   }
 
   /**
@@ -53,12 +53,12 @@ class PageLoadProgressAdminSettingsTest extends WebTestBase {
   public function setUp() {
     parent::setUp();
     // Admin user account only needs a subset of admin permissions
-    $this->adminUser = $this->drupalCreateUser(array(
+    $this->adminUser = $this->drupalCreateUser([
       'administer site configuration',
       'access administration pages',
       'administer permissions',
       'administer Page Load Progress settings',
-    ));
+    ]);
     $this->drupalLogin($this->adminUser);
   }
 

@@ -10,10 +10,9 @@
  * Implements hook_permission().
  */
 function page_load_progress_permission() {
-  return array(
-    'administer Page Load Progress settings' => array(
+  return [
+    'administer Page Load Progress settings' => [
       'title' => t('Administer Page Load Progress settings'),
-    ),
-  );
+    ],
+  ];
 }
-
