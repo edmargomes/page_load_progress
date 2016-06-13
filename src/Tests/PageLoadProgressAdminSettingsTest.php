@@ -12,7 +12,7 @@ use Drupal\simpletest\WebTestBase;
 /**
  * Tests for the page_load_progress module's admin settings.
  *
- * @ingroup page_load_progress
+ * @group page_load_progress
  */
 class PageLoadProgressAdminSettingsTest extends WebTestBase {
   /**
