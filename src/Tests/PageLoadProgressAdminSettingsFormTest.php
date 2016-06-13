@@ -8,6 +8,7 @@
 namespace Drupal\page_load_progress\Tests;
 
 use Drupal\simpletest\WebTestBase;
+use Drupal\Component\Render\FormattableMarkup;
 
 /**
  * Tests for the page_load_progress module.
@@ -94,8 +95,9 @@ class PageLoadProgressAdminSettingsFormTest extends WebTestBase {
     // Load settings form page and test for new values.
     $this->drupalGet('admin/config/user-interface/page-load-progress');
     $this->assertFieldById('edit-page-load-progress-time', $edit['page_load_progress_time'],
-      format_string('The edit-page-load-progress-time field has the value %val.', array('%val' => $edit['page_load_progress_time'])));
+      new FormattableMarkup('The edit-page-load-progress-time field has the value %val.', ['%val' => $edit['page_load_progress_time']]));
     $this->assertFieldById('edit-page-load-progress-elements', $edit['page_load_progress_elements'],
-      format_string('The edit-page-load-progress-elements field has the value %val.', array('%val' => $edit['page_load_progress_elements'])));
+      new FormattableMarkup('The edit-page-load-progress-elements field has the value %val.', ['%val' => $edit['page_load_progress_elements']]));
   }
+
 }

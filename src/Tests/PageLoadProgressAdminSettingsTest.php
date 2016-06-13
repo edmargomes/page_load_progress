@@ -78,4 +78,5 @@ class PageLoadProgressAdminSettingsTest extends WebTestBase {
     $this->drupalGet('admin/config/user-interface');
     $this->assertResponse(403, 'Access denied for non-admin user.');
   }
+
 }
