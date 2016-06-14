@@ -57,7 +57,7 @@ class PageLoadProgressAdminSettingsTest extends WebTestBase {
       'administer site configuration',
       'access administration pages',
       'administer permissions',
-      'administer Page Load Progress settings',
+      'administer page load progress',
     ]);
     $this->drupalLogin($this->adminUser);
   }

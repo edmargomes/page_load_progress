@@ -53,8 +53,8 @@ class PageLoadProgressAdminSettingsFormTest extends WebTestBase {
    */
   public function setUp() {
     parent::setUp();
-    // Privileged user should only have the page_load_progress permissions
-    $this->privilegedUser = $this->drupalCreateUser(['administer Page Load Progress settings']);
+    // Privileged user should only have the compact_forms permissions
+    $this->privilegedUser = $this->drupalCreateUser(['administer page load progress']);
     $this->drupalLogin($this->privilegedUser);
   }
 
