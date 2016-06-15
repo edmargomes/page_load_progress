@@ -4,4 +4,4 @@ page_load_progress.admin_settings:
     _title: 'Page Load Progress'
     _form: '\Drupal\page_load_progress\Form\SettingsForm'
   requirements:
-    _permission: 'administer Page Load Progress settings'
+    _permission: 'administer page load progress'
