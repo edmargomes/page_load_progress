@@ -82,6 +82,7 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
     $this->drupalGet('admin/config/user-interface/page-load-progress');
     $this->assertSession()->statusCodeEquals(403);
   }
+
   /**
    * Test posting data to the page_load_progress settings form.
    */
@@ -91,7 +92,7 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
       'page_load_progress_time' => 5000,
       'page_load_progress_elements' => '.sample_submit',
     ];
-    $this->drupalPostForm('admin/config/user-interface/page-load-progress', $edit, t('Save configuration'));
+    $this->drupalPostForm('admin/config/user-interface/page-load-progress', $edit, 'Save configuration');
 
     // Load settings form page and test for new values.
     $this->drupalGet('admin/config/user-interface/page-load-progress');
@@ -100,3 +101,4 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
   }
 
 }
+
