@@ -9,7 +9,6 @@ namespace Drupal\Tests\page_load_progress\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Core\Url;
-//use Drupal\Component\Render\FormattableMarkup;
 
 /**
  * Tests for the page_load_progress module.
@@ -67,39 +66,37 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
     $url = Url::fromRoute('page_load_progress.admin_settings');
     $this->drupalGet($url);
     $this->assertSession()->statusCodeEquals(200);
-    //$this->assertTitle(t('Page Load Progress | Drupal'), 'The title on the page is "Page Load Progress".');
+
+    $this->assertSession()->pageTextContains('Page Load Progress | Drupal');
 
     // Verify every field exists.
     $this->assertSession()->fieldExists('edit-page-load-progress-time');
     $this->assertSession()->fieldExists('edit-page-load-progress-elements');
 
     // Validate default form values.
-    //$this->assertFieldById('edit-page-load-progress-time', 10, 'The edit-page-load-progress-time field has the value "Show immediately".');
-    //$this->assertFieldById('edit-page-load-progress-elements', '.form-submit', 'The edit-page-load-progress-elements field has the value ".form-submit".');
+    $this->assertSession()->fieldValueEquals('edit-page-load-progress-time', 10);
+    $this->assertSession()->fieldValueEquals('edit-page-load-progress-elements', '.form-submit');
 
     // Verify that there's no access bypass.
     $this->drupalLogout();
     $this->drupalGet('admin/config/user-interface/page-load-progress');
     $this->assertSession()->statusCodeEquals(403);
   }
-
   /**
    * Test posting data to the page_load_progress settings form.
    */
-  //public function testPageLoadProgressSettingsPost() {
-  // Post form with new values.
-  //  $edit = [
-  //    'page_load_progress_time' => 5000,
-  //    'page_load_progress_elements' => '.sample_submit',
-  //  ];
-  //$this->drupalPostForm('admin/config/user-interface/page-load-progress', $edit, t('Save configuration'));
+  public function testPageLoadProgressSettingsPost() {
+    // Post form with new values.
+    $edit = [
+      'page_load_progress_time' => 5000,
+      'page_load_progress_elements' => '.sample_submit',
+    ];
+    $this->drupalPostForm('admin/config/user-interface/page-load-progress', $edit, t('Save configuration'));
 
-  // Load settings form page and test for new values.
-  //$this->drupalGet('admin/config/user-interface/page-load-progress');
-  //$this->assertFieldById('edit-page-load-progress-time', $edit['page_load_progress_time'],
-    //new FormattableMarkup('The edit-page-load-progress-time field has the value %val.', ['%val' => $edit['page_load_progress_time']]));
-  //$this->assertFieldById('edit-page-load-progress-elements', $edit['page_load_progress_elements'],
-    //new FormattableMarkup('The edit-page-load-progress-elements field has the value %val.', ['%val' => $edit['page_load_progress_elements']]));
-  //}
+    // Load settings form page and test for new values.
+    $this->drupalGet('admin/config/user-interface/page-load-progress');
+    $this->assertSession()->fieldValueEquals('edit-page-load-progress-time', $edit['page_load_progress_time']);
+    $this->assertSession()->fieldValueEquals('edit-page-load-progress-elements', $edit['page_load_progress_elements']);
+  }
 
 }
