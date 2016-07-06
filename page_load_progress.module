@@ -5,7 +5,7 @@
  * Allows to attach page_load_progress assets to all pages.
  */
 
- /**
+/**
  * Implements hook_page_attachments().
  */
 function page_load_progress_page_attachments(array &$attachments) {

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Test case for testing the Page Load Progress module.
- */
-
 namespace Drupal\page_load_progress\Tests;
 
 use Drupal\simpletest\WebTestBase;
@@ -53,7 +48,7 @@ class PageLoadProgressAdminSettingsFormTest extends WebTestBase {
    */
   public function setUp() {
     parent::setUp();
-    // Privileged user should only have the page_load_progress permissions
+    // Privileged user should only have the page_load_progress permissions.
     $this->privilegedUser = $this->drupalCreateUser(['administer page load progress']);
     $this->drupalLogin($this->privilegedUser);
   }

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Test case for testing the Page Load Progress admin settings.
- */
-
 namespace Drupal\Tests\page_load_progress\Functional;
 
 use Drupal\Tests\BrowserTestBase;
@@ -17,7 +12,7 @@ use Drupal\Core\Url;
  */
 class PageLoadProgressAdminSettingsTest extends BrowserTestBase {
   /**
-   * User account with administrative permissions
+   * User account with administrative permissions.
    *
    * @var \Drupal\Core\Session\AccountInterface
    */
@@ -53,7 +48,7 @@ class PageLoadProgressAdminSettingsTest extends BrowserTestBase {
    */
   public function setUp() {
     parent::setUp();
-    // Admin user account only needs a subset of admin permissions
+    // Admin user account only needs a subset of admin permissions.
     $this->adminUser = $this->drupalCreateUser([
       'administer site configuration',
       'access administration pages',
@@ -73,7 +68,7 @@ class PageLoadProgressAdminSettingsTest extends BrowserTestBase {
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->pageTextContains('Page Load Progress');
 
-    // Verify route is valid
+    // Verify route is valid.
     $url = Url::fromRoute('page_load_progress.admin_settings');
     $this->drupalGet($url);
     $this->assertSession()->statusCodeEquals(200);

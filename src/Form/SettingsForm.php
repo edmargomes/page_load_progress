@@ -1,21 +1,19 @@
 <?php
 
-/**
- * @file
- * Builds the Page Load Progress settings form.
- */
-
 namespace Drupal\page_load_progress\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ * Allows to configure the page_load_progress module.
+ */
 class SettingsForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
    */
-  public function getFormID() {
+  public function getFormId() {
     return 'page_load_progress_admin_form';
   }
 

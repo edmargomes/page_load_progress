@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Test case for testing the Page Load Progress admin settings.
- */
-
 namespace Drupal\page_load_progress\Tests;
 
 use Drupal\simpletest\WebTestBase;
@@ -16,7 +11,7 @@ use Drupal\simpletest\WebTestBase;
  */
 class PageLoadProgressAdminSettingsTest extends WebTestBase {
   /**
-   * User account with administrative permissions
+   * User account with administrative permissions.
    *
    * @var \Drupal\Core\Session\AccountInterface
    */
@@ -52,7 +47,7 @@ class PageLoadProgressAdminSettingsTest extends WebTestBase {
    */
   public function setUp() {
     parent::setUp();
-    // Admin user account only needs a subset of admin permissions
+    // Admin user account only needs a subset of admin permissions.
     $this->adminUser = $this->drupalCreateUser([
       'administer site configuration',
       'access administration pages',
