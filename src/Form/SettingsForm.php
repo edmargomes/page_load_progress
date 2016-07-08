@@ -49,6 +49,7 @@ class SettingsForm extends ConfigFormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Elements that will trigger the throbber'),
       '#description' => $this->t('Enter the elements that will trigger the effect separated by commas. Classes should have their leading dot and ids their leading hashes.'),
+      '#required' => TRUE,
       '#default_value' => $page_load_progress_config->get('page_load_progress_elements'),
     ];
 
