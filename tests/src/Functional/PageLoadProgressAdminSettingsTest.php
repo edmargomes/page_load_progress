@@ -46,7 +46,7 @@ class PageLoadProgressAdminSettingsTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp() {
+  protected function setUp() {
     parent::setUp();
     // Admin user account only needs a subset of admin permissions.
     $this->adminUser = $this->drupalCreateUser([
@@ -64,18 +64,17 @@ class PageLoadProgressAdminSettingsTest extends BrowserTestBase {
   public function testAdminPages() {
 
     // Verify admin link.
-    $this->drupalGet('admin/config/user-interface');
+    $this->drupalGet(Url::fromRoute('system.admin_config_ui'));
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->pageTextContains('Page Load Progress');
 
     // Verify route is valid.
-    $url = Url::fromRoute('page_load_progress.admin_settings');
-    $this->drupalGet($url);
+    $this->drupalGet(Url::fromRoute('page_load_progress.admin_settings'));
     $this->assertSession()->statusCodeEquals(200);
 
     // Verify that there's no access bypass.
     $this->drupalLogout();
-    $this->drupalGet('admin/config/user-interface');
+    $this->drupalGet(Url::fromRoute('system.admin_config_ui'));
     $this->assertSession()->statusCodeEquals(403);
   }
 

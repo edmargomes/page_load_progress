@@ -46,7 +46,7 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp() {
+  protected function setUp() {
     parent::setUp();
     // Privileged user should only have the page_load_progress permissions.
     $this->privilegedUser = $this->drupalCreateUser(['administer page load progress']);
@@ -58,10 +58,8 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
    */
   public function testPageLoadProgressSettings() {
     // Verify if we can successfully access the page_load_progress form.
-    $url = Url::fromRoute('page_load_progress.admin_settings');
-    $this->drupalGet($url);
+    $this->drupalGet(Url::fromRoute('page_load_progress.admin_settings'));
     $this->assertSession()->statusCodeEquals(200);
-
     $this->assertSession()->pageTextContains('Page Load Progress | Drupal');
 
     // Verify every field exists.
@@ -74,7 +72,7 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
 
     // Verify that there's no access bypass.
     $this->drupalLogout();
-    $this->drupalGet('admin/config/user-interface/page-load-progress');
+    $this->drupalGet(Url::fromRoute('page_load_progress.admin_settings'));
     $this->assertSession()->statusCodeEquals(403);
   }
 
@@ -87,10 +85,10 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
       'page_load_progress_time' => 5000,
       'page_load_progress_elements' => '.sample_submit',
     ];
-    $this->drupalPostForm('admin/config/user-interface/page-load-progress', $edit, 'Save configuration');
+    $this->drupalPostForm(Url::fromRoute('page_load_progress.admin_settings'), $edit, 'Save configuration');
 
     // Load settings form page and test for new values.
-    $this->drupalGet('admin/config/user-interface/page-load-progress');
+    $this->drupalGet(Url::fromRoute('page_load_progress.admin_settings'));
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-time', $edit['page_load_progress_time']);
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-elements', $edit['page_load_progress_elements']);
   }
