@@ -13,9 +13,10 @@ function page_load_progress_page_attachments(array &$attachments) {
     // Unconditionally attach assets to the page.
     $attachments['#attached']['library'][] = 'page_load_progress/page_load_progress';
 
-    // Attach config settings.
+    // Load module configs.
     $config = \Drupal::config('page_load_progress.settings');
 
+    // Attach config settings.
     $attachments['#attached']['drupalSettings']['page_load_progress'] = [
       'delay' => $config->get('page_load_progress_time'),
       'elements' => $config->get('page_load_progress_elements'),
