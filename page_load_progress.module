@@ -20,6 +20,7 @@ function page_load_progress_page_attachments(array &$attachments) {
     $attachments['#attached']['drupalSettings']['page_load_progress'] = [
       'delay' => $config->get('page_load_progress_time'),
       'elements' => $config->get('page_load_progress_elements'),
+      'esc_key' => $config->get('page_load_progress_esc_key'),
     ];
   }
 }

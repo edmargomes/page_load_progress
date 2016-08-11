@@ -65,10 +65,12 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
     // Verify every field exists.
     $this->assertSession()->fieldExists('edit-page-load-progress-time');
     $this->assertSession()->fieldExists('edit-page-load-progress-elements');
+    $this->assertSession()->fieldExists('edit-page-load-progress-esc-key');
 
     // Validate default form values.
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-time', 10);
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-elements', '.form-submit');
+    $this->assertSession()->fieldValueEquals('edit-page-load-progress-esc-key', TRUE);
 
     // Verify that there's no access bypass.
     $this->drupalLogout();
@@ -84,6 +86,7 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
     $edit = [
       'page_load_progress_time' => 5000,
       'page_load_progress_elements' => '.sample_submit',
+      'page_load_progress_esc_key' => FALSE,
     ];
     $this->drupalPostForm(Url::fromRoute('page_load_progress.admin_settings'), $edit, 'Save configuration');
 
@@ -91,6 +94,7 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
     $this->drupalGet(Url::fromRoute('page_load_progress.admin_settings'));
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-time', $edit['page_load_progress_time']);
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-elements', $edit['page_load_progress_elements']);
+    $this->assertSession()->fieldValueEquals('edit-page-load-progress-esc-key', $edit['page_load_progress_esc_key']);
   }
 
 }

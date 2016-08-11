@@ -53,6 +53,13 @@ class SettingsForm extends ConfigFormBase {
       '#default_value' => $page_load_progress_config->get('page_load_progress_elements'),
     ];
 
+    $form['page_load_progress_esc_key'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Allow ESC key to kill the throbber'),
+      '#description' => $this->t('Under some circumstances, you may want to let your user unlock the screen manually by pressing the ESC key.'),
+      '#default_value' => $page_load_progress_config->get('page_load_progress_esc_key'),
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -63,6 +70,7 @@ class SettingsForm extends ConfigFormBase {
     $this->config('page_load_progress.settings')
       ->set('page_load_progress_time', $form_state->getValue('page_load_progress_time'))
       ->set('page_load_progress_elements', $form_state->getValue('page_load_progress_elements'))
+      ->set('page_load_progress_esc_key', $form_state->getValue('page_load_progress_esc_key'))
       ->save();
 
     parent::submitForm($form, $form_state);
