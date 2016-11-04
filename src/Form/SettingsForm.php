@@ -53,6 +53,30 @@ class SettingsForm extends ConfigFormBase {
       '#default_value' => $page_load_progress_config->get('page_load_progress_elements'),
     ];
 
+    $form['visibility_conditions'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Visibility conditions'),
+      '#open' => TRUE,
+    ];
+
+    $form['visibility_conditions']['page_load_progress_request_path'] = [
+      '#type' => 'textarea',
+      '#default_value' => $page_load_progress_config->get('page_load_progress_request_path'),
+      '#description' => $this->t("Specify pages by using their paths. Enter one path per line. The '*' character is a wildcard. An example path is %user-wildcard for every user page. %front is the front page.", [
+        '%user-wildcard' => '/user/*',
+        '%front' => '<front>',
+      ]),
+    ];
+
+    $form['visibility_conditions']['page_load_progress_request_path_negate_condition'] = [
+      '#type' => 'radios',
+      '#default_value' => (int) $page_load_progress_config->get('page_load_progress_request_path_negate_condition'),
+      '#options' => [
+        $this->t('Show for the listed pages'),
+        $this->t('Hide for the listed pages'),
+      ]
+    ];
+
     $form['page_load_progress_esc_key'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Allow ESC key to kill the throbber'),
@@ -70,6 +94,8 @@ class SettingsForm extends ConfigFormBase {
     $this->config('page_load_progress.settings')
       ->set('page_load_progress_time', $form_state->getValue('page_load_progress_time'))
       ->set('page_load_progress_elements', $form_state->getValue('page_load_progress_elements'))
+      ->set('page_load_progress_request_path', $form_state->getValue('page_load_progress_request_path'))
+      ->set('page_load_progress_request_path_negate_condition', $form_state->getValue('page_load_progress_request_path_negate_condition'))
       ->set('page_load_progress_esc_key', $form_state->getValue('page_load_progress_esc_key'))
       ->save();
 
