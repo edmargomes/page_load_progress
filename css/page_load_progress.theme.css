@@ -9,7 +9,7 @@
   z-index: 9998;
 }
 
-.page-load-progress-lock-screen.hidden {
+.page-load-progress-lock-screen.page-load-progress-hidden {
   display: none;
 }
 

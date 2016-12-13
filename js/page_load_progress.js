@@ -15,7 +15,7 @@
       var delay = Number(settings.page_load_progress.delay);
       var exit_elements = String(settings.page_load_progress.elements).split(',');
       var esc_key = Boolean(settings.page_load_progress.esc_key);
-      var screen_lock = '<div class="page-load-progress-lock-screen hidden">\n\
+      var screen_lock = '<div class="page-load-progress-lock-screen page-load-progress-hidden">\n\
                          <div class="page-load-progress-spinner"></div>\n\
                          </div>';
       var body = $('body', context, settings);
