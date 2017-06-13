@@ -34,9 +34,12 @@
           evt = evt || window.event;
           var isEscape = false;
           if ("key" in evt) {
-            isEscape = evt.key == "Escape";
+            // "Escape" is standard in modern browsers. "Esc" is primarily for
+            // Internet Explorer 9 and Firefox 36 and earlier.
+            isEscape = (evt.key === "Escape" || evt.key === "Esc");
           } else {
-            isEscape = evt.keyCode == 27;
+            // keyCode is getting deprecated. Keeping it for legacy reasons.
+            isEscape = evt.keyCode === 27;
           }
           if (isEscape) {
             $('.page-load-progress-lock-screen').remove();
