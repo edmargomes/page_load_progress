@@ -13,7 +13,7 @@
   display: none;
 }
 
-.page-load-progress-spinner {
+.page-load-progress-throbber {
   background-image: url('../images/loader.gif');
   background-repeat: no-repeat;
   height: 128px;

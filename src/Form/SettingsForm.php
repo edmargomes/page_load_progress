@@ -45,14 +45,6 @@ class SettingsForm extends ConfigFormBase {
       '#default_value' => $page_load_progress_config->get('page_load_progress_time'),
     ];
 
-    $form['page_load_progress_elements'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Elements that will trigger the throbber'),
-      '#description' => $this->t('Enter the elements that will trigger the effect separated by commas. Classes should have their leading dot and ids their leading hashes.'),
-      '#required' => TRUE,
-      '#default_value' => $page_load_progress_config->get('page_load_progress_elements'),
-    ];
-
     $form['visibility_conditions'] = [
       '#type' => 'details',
       '#title' => $this->t('Visibility conditions'),
@@ -93,7 +85,6 @@ class SettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config('page_load_progress.settings')
       ->set('page_load_progress_time', $form_state->getValue('page_load_progress_time'))
-      ->set('page_load_progress_elements', $form_state->getValue('page_load_progress_elements'))
       ->set('page_load_progress_request_path', $form_state->getValue('page_load_progress_request_path'))
       ->set('page_load_progress_request_path_negate_condition', $form_state->getValue('page_load_progress_request_path_negate_condition'))
       ->set('page_load_progress_esc_key', $form_state->getValue('page_load_progress_esc_key'))

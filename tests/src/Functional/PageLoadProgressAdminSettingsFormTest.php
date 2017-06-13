@@ -64,18 +64,18 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
 
     // Verify every field exists.
     $this->assertSession()->fieldExists('edit-page-load-progress-time');
-    $this->assertSession()->fieldExists('edit-page-load-progress-elements');
     $this->assertSession()->fieldExists('edit-page-load-progress-request-path');
     $this->assertSession()->fieldExists('page_load_progress_request_path_negate_condition');
     $this->assertSession()->fieldExists('edit-page-load-progress-esc-key');
 
     // Validate default form values.
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-time', 10);
-    $this->assertSession()->fieldValueEquals('edit-page-load-progress-elements', '.form-submit');
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-request-path', '');
     $this->assertSession()->fieldValueEquals('page_load_progress_request_path_negate_condition', 1);
-
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-esc-key', TRUE);
+
+    // Verify the custom CSS class is injected on form submission.
+    $this->assertSession()->elementExists('css', '.page-load-progress-submit');
 
     // Verify that there's no access bypass.
     $this->drupalLogout();
@@ -90,7 +90,6 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
     // Post form with new values.
     $edit = [
       'page_load_progress_time' => 5000,
-      'page_load_progress_elements' => '.sample_submit',
       'page_load_progress_request_path' => '<front>',
       'page_load_progress_request_path_negate_condition' => 0,
       'page_load_progress_esc_key' => FALSE,
@@ -100,7 +99,6 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
     // Load settings form page and test for new values.
     $this->drupalGet(Url::fromRoute('page_load_progress.admin_settings'));
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-time', $edit['page_load_progress_time']);
-    $this->assertSession()->fieldValueEquals('edit-page-load-progress-elements', $edit['page_load_progress_elements']);
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-request-path', $edit['page_load_progress_request_path']);
     $this->assertSession()->fieldValueEquals('page_load_progress_request_path_negate_condition', $edit['page_load_progress_request_path_negate_condition']);
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-esc-key', $edit['page_load_progress_esc_key']);

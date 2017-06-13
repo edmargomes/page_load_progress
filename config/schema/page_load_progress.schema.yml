@@ -7,7 +7,7 @@ page_load_progress.settings:
       label: 'Time to wait before locking the screen'
     page_load_progress_elements:
       type: text
-      label: 'Time to wait before showing the image lock'
+      label: 'HTML elements which will trigger the throbber'
     page_load_progress_request_path:
       type: string
       label: 'Lists of paths to include or exclude'

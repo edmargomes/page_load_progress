@@ -4,6 +4,7 @@
  * @file
  * Allows to attach page_load_progress assets to all pages.
  */
+
 use Drupal\Component\Utility\Unicode;
 
 /**
@@ -68,4 +69,17 @@ function page_load_progress_page_attachments(array &$attachments) {
       'esc_key' => $config->get('page_load_progress_esc_key'),
     ];
   }
+}
+
+/**
+ * Implements template_preprocess_input().
+ */
+function page_load_progress_preprocess_input(&$variables) {
+  $element = $variables['element'];
+  // Don't trigger the throbber on Ajax-based forms since this causes various
+  // issues. E.g. with modal windows.
+  if ($element['#type'] == 'submit' && !isset($element['#ajax'])) {
+    $variables['attributes']['class'][] = 'page-load-progress-submit';
+  }
+
 }

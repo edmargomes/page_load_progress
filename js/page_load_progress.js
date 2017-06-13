@@ -13,16 +13,17 @@
   Drupal.behaviors.page_load_progress = {
     attach: function (context, settings) {
       var delay = Number(settings.page_load_progress.delay);
-      var exit_elements = String(settings.page_load_progress.elements).split(',');
+      var elements = String(settings.page_load_progress.elements).split(',');
       var esc_key = Boolean(settings.page_load_progress.esc_key);
       var screen_lock = '<div class="page-load-progress-lock-screen page-load-progress-hidden">\n\
-                         <div class="page-load-progress-spinner"></div>\n\
+                         <div class="page-load-progress-throbber"></div>\n\
                          </div>';
       var body = $('body', context, settings);
 
       // Add the screen lock behavior for each configured element.
-      for (var i in exit_elements) {
-        $(exit_elements[i]).click(function () {
+      for (var i in elements) {
+        // Prevents from getting in the way of HTML 5 form validation.
+        $(elements[i]).parents('form').submit(function () {
           setTimeout(lockScreen, delay);
         });
       }
