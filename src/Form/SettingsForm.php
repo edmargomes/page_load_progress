@@ -66,7 +66,7 @@ class SettingsForm extends ConfigFormBase {
       '#options' => [
         $this->t('Show for the listed pages'),
         $this->t('Hide for the listed pages'),
-      ]
+      ],
     ];
 
     $form['page_load_progress_esc_key'] = [

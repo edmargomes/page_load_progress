@@ -30,14 +30,15 @@
 
       // Allows ESC key to kill the throbber.
       if (esc_key) {
-        document.onkeydown = function(evt) {
+        document.onkeydown = function (evt) {
           evt = evt || window.event;
           var isEscape = false;
           if ("key" in evt) {
             // "Escape" is standard in modern browsers. "Esc" is primarily for
             // Internet Explorer 9 and Firefox 36 and earlier.
             isEscape = (evt.key === "Escape" || evt.key === "Esc");
-          } else {
+          }
+          else {
             // keyCode is getting deprecated. Keeping it for legacy reasons.
             isEscape = evt.keyCode === 27;
           }

@@ -6,10 +6,14 @@
  */
 
 use Drupal\Component\Utility\Unicode;
+use Drupal\Core\Config\ImmutableConfig;
 
 /**
- * Checks if the current URL is one of the paths defined in the visibility
- * conditions. Return statement is inverted by the isNegated() option.
+ * Checks if the current URL is defined in the visibility conditions.
+ *
+ * When being used, the visibility conditions allow to check if the current URL
+ * is one of the paths defined in the visibility conditions. Return statement
+ * is inverted by the is_negated() option.
  *
  * @param \Drupal\Core\Config\ImmutableConfig $config
  *   Configuration of the module.
@@ -17,7 +21,7 @@ use Drupal\Component\Utility\Unicode;
  * @return bool
  *   TRUE if the condition has been met, FALSE otherwise.
  */
-function evaluateVisibilityConditions($config) {
+function evaluate_visibility_conditions(ImmutableConfig $config) {
   // Convert path to lowercase. This allows comparison of the same path
   // with different case. Ex: /Page, /page, /PAGE.
   $pages = Unicode::strtolower($config->get('page_load_progress_request_path'));
@@ -32,7 +36,7 @@ function evaluateVisibilityConditions($config) {
   $path_alias = Unicode::strtolower(\Drupal::service('path.alias_manager')->getAliasByPath($path));
 
   $result = \Drupal::service('path.matcher')->matchPath($path_alias, $pages) || (($path != $path_alias) && \Drupal::service('path.matcher')->matchPath($path, $pages));
-  return isNegated($config) ? !$result : $result;
+  return is_negated($config) ? !$result : $result;
 }
 
 /**
@@ -44,7 +48,7 @@ function evaluateVisibilityConditions($config) {
  * @return bool
  *   Determines whether page visibility is negated.
  */
-function isNegated($config) {
+function is_negated(ImmutableConfig $config) {
   return !empty($config->get('page_load_progress_request_path_negate_condition'));
 }
 
@@ -57,7 +61,7 @@ function page_load_progress_page_attachments(array &$attachments) {
 
   if (\Drupal::currentUser()->hasPermission('use page load progress') &&
       !strpos(\Drupal::service('path.current')->getPath(), 'admin/structure/views/') &&
-      evaluateVisibilityConditions($config)) {
+      evaluate_visibility_conditions($config)) {
 
     // Unconditionally attach assets to the page.
     $attachments['#attached']['library'][] = 'page_load_progress/page_load_progress';
