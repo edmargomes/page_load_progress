@@ -69,6 +69,13 @@ class SettingsForm extends ConfigFormBase {
       ],
     ];
 
+    $form['visibility_conditions']['page_load_progress_internal_links'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Use the throbber for internal links'),
+      '#description' => $this->t("The throbber won't be triggered on links opened from a modal or when the user is trying to open them in a new tab."),
+      '#default_value' => $page_load_progress_config->get('page_load_progress_internal_links'),
+    ];
+
     $form['page_load_progress_esc_key'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Allow ESC key to kill the throbber'),
@@ -87,6 +94,7 @@ class SettingsForm extends ConfigFormBase {
       ->set('page_load_progress_time', $form_state->getValue('page_load_progress_time'))
       ->set('page_load_progress_request_path', $form_state->getValue('page_load_progress_request_path'))
       ->set('page_load_progress_request_path_negate_condition', $form_state->getValue('page_load_progress_request_path_negate_condition'))
+      ->set('page_load_progress_internal_links', $form_state->getValue('page_load_progress_internal_links'))
       ->set('page_load_progress_esc_key', $form_state->getValue('page_load_progress_esc_key'))
       ->save();
 

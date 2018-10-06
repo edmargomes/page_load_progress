@@ -66,12 +66,14 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
     $this->assertSession()->fieldExists('edit-page-load-progress-time');
     $this->assertSession()->fieldExists('edit-page-load-progress-request-path');
     $this->assertSession()->fieldExists('page_load_progress_request_path_negate_condition');
+    $this->assertSession()->fieldExists('edit-page-load-progress-internal-links');
     $this->assertSession()->fieldExists('edit-page-load-progress-esc-key');
 
     // Validate default form values.
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-time', 10);
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-request-path', '');
     $this->assertSession()->fieldValueEquals('page_load_progress_request_path_negate_condition', 1);
+    $this->assertSession()->fieldValueEquals('edit-page-load-progress-internal-links', FALSE);
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-esc-key', TRUE);
 
     // Verify the custom CSS class is injected on form submission.
@@ -92,6 +94,7 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
       'page_load_progress_time' => 5000,
       'page_load_progress_request_path' => '<front>',
       'page_load_progress_request_path_negate_condition' => 0,
+      'page_load_progress_internal_links' => TRUE,
       'page_load_progress_esc_key' => FALSE,
     ];
     $this->drupalPostForm(Url::fromRoute('page_load_progress.admin_settings'), $edit, 'Save configuration');
@@ -101,6 +104,7 @@ class PageLoadProgressAdminSettingsFormTest extends BrowserTestBase {
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-time', $edit['page_load_progress_time']);
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-request-path', $edit['page_load_progress_request_path']);
     $this->assertSession()->fieldValueEquals('page_load_progress_request_path_negate_condition', $edit['page_load_progress_request_path_negate_condition']);
+    $this->assertSession()->fieldValueEquals('edit-page-load-progress-internal-links', $edit['page_load_progress_internal_links']);
     $this->assertSession()->fieldValueEquals('edit-page-load-progress-esc-key', $edit['page_load_progress_esc_key']);
   }
 

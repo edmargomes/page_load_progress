@@ -14,6 +14,7 @@
     attach: function (context, settings) {
       var delay = Number(settings.page_load_progress.delay);
       var elements = String(settings.page_load_progress.elements).split(',');
+      var internal_links = Boolean(settings.page_load_progress.internal_links);
       var esc_key = Boolean(settings.page_load_progress.esc_key);
       var screen_lock = '<div class="page-load-progress-lock-screen page-load-progress-hidden">\n\
                          <div class="page-load-progress-throbber"></div>\n\
@@ -24,6 +25,29 @@
       for (var i in elements) {
         // Prevents from getting in the way of HTML 5 form validation.
         $(elements[i]).parents('form').submit(function () {
+          setTimeout(lockScreen, delay);
+        });
+      }
+
+      // Add the throbber for internal links only if requested in the UI.
+      if (internal_links) {
+        $("a[href]").on("click", function(evnt) {
+          // Do not lock the screen if the link is external.
+          if ($(this).attr('href').slice(0,1) != '/') {
+            return;
+          }
+
+          // Do not lock the screen if the link is being opened in a new tab.
+          // Source: https://stackoverflow.com/a/20087506/9637665.
+          if (evnt.ctrlKey || evnt.shiftKey || evnt.metaKey || (evnt.button && evnt.button == 1)) {
+            return;
+          }
+
+          // Do not lock the screen if the link is within a modal.
+          if ($(this).parents('.modal').length > 0) {
+            return;
+          }
+
           setTimeout(lockScreen, delay);
         });
       }

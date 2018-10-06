@@ -14,6 +14,9 @@ page_load_progress.settings:
     page_load_progress_request_path_negate_condition:
       type: boolean
       label: 'Negate request path condition'
+    page_load_progress_internal_links:
+      type: boolean
+      label: 'Use the throbber for internal links'
     page_load_progress_esc_key:
       type: boolean
       label: 'Allow ESC key to kill the throbber'
