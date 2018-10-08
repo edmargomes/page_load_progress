@@ -27,10 +27,10 @@ CAVEATS
 
 Even though you can leverage a Configuration Management override or a Twig
 template to change the default behavior, it is strongly recommended you trigger
-the throbber on form submits only. In addition, this is the only supported use
-case. Be warned!
+the throbber only on form submits and internal links as these are the only
+supported use cases. Be warned!
 
-If you must, assign the behavior to "<a>" elements carefully. "<a>"
+If you must, assign the behavior to external "<a>" elements carefully. "<a>"
 elements can be opened in a new browser tab or window, which would leave the
 original window locked waiting for reload. Also, "<a>" elements are sometimes
 used with modals, so make sure that you identify what classes trigger modal
