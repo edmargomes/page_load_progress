@@ -5,7 +5,6 @@
  * Allows to attach page_load_progress assets to all pages.
  */
 
-use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Config\ImmutableConfig;
 
 /**
@@ -24,7 +23,7 @@ use Drupal\Core\Config\ImmutableConfig;
 function evaluate_visibility_conditions(ImmutableConfig $config) {
   // Convert path to lowercase. This allows comparison of the same path
   // with different case. Ex: /Page, /page, /PAGE.
-  $pages = Unicode::strtolower($config->get('page_load_progress_request_path'));
+  $pages = mb_strtolower($config->get('page_load_progress_request_path'));
   if (!$pages) {
     return TRUE;
   }
@@ -33,7 +32,7 @@ function evaluate_visibility_conditions(ImmutableConfig $config) {
   $path = \Drupal::service('path.current')->getPath();
   // Do not trim a trailing slash if that is the complete path.
   $path = $path === '/' ? $path : rtrim($path, '/');
-  $path_alias = Unicode::strtolower(\Drupal::service('path.alias_manager')->getAliasByPath($path));
+  $path_alias = mb_strtolower(\Drupal::service('path.alias_manager')->getAliasByPath($path));
 
   $result = \Drupal::service('path.matcher')->matchPath($path_alias, $pages) || (($path != $path_alias) && \Drupal::service('path.matcher')->matchPath($path, $pages));
   return is_negated($config) ? !$result : $result;
