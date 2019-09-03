@@ -3,4 +3,5 @@ description: 'Locks the screen and adds a progress icon to indicate progress whe
 type: module
 package: 'User interface'
 core: 8.x
+core_version_requirement: ^8 || ^9
 configure: page_load_progress.admin_settings
